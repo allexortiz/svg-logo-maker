@@ -29,7 +29,7 @@ function promptUser() {
             {
                 type: 'input',
                 message: 'Choose what color you want the shape to be (Enter color keyword or hexidecimal number)',
-                name: shapeColor
+                name: 'shapeColor'
             },
         ])
         //makes sure the user doesn't input more than 3 characters
@@ -62,6 +62,9 @@ function writeToFile(fileName, responses) {
         default:
             throw new Error('Invalid shape choice');
     }
+
+    // Set the color for the shape using the value from the prompt
+    shapeChoice.setColor(responses.shapeColor);
 
     svgString += shapeChoice.render(); // Use the render method from the chosen shape class
 
