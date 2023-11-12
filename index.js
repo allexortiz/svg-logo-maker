@@ -18,7 +18,7 @@ function promptUser() {
             {
                 type: 'input',
                 message: 'Please choose a text color: (Enter color name or hexidecimal number)',
-                name: 'color',
+                name: 'textColor',
             },
             {
                 type: 'list',
@@ -39,7 +39,7 @@ function promptUser() {
                 promptUser();
             } else {
                 //calls to write the file to generate svg file
-                writeToFile('logo.svg, responses');
+                writeToFile('logo.svg', responses);
             }
         });
 }
@@ -47,19 +47,23 @@ function promptUser() {
 function writeToFile(fileName, responses) {
     let svgString = '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
     svgString += '<g>';
-    svgString += $`{responses.shape}`;
 
     let shapeChoice;
-    if (responses.shape === 'Triangle') {
-        shapeChoice = new Triangle();
-        svgString += `<polygon points="150, 18 244, 182 56, 182" fill="${responses.shapeBackgroundColor}"/>`;
-    } else if (responses.shape === 'Square') {
-        shapeChoice = new Square();
-        svgString += `<rect x="73" y="40" width="160" height="160" fill="${responses.shapeBackgroundColor}"/>`;
-    } else {
-        shapeChoice = new Circle();
-        svgString += `<circle cx="150" cy="115" r="80" fill="${responses.shapeBackgroundColor}"/>`;
+    switch (responses.shape) {
+        case 'Triangle':
+            shapeChoice = new Triangle();
+            break;
+        case 'Square':
+            shapeChoice = new Square();
+            break;
+        case 'Circle':
+            shapeChoice = new Circle();
+            break;
+        default:
+            throw new Error('Invalid shape choice');
     }
+
+    svgString += shapeChoice.render(); // Use the render method from the chosen shape class
 
     svgString += `<text x="150" y="130" text-anchor="middle" font-size="40" fill="${responses.textColor}">${responses.text}</text>`;
     svgString += "</g>";
@@ -69,6 +73,7 @@ function writeToFile(fileName, responses) {
         err ? console.log(err) : console.log("Generated logo.svg");
     });
 }
+
 
 //calls to start application
 promptUser();
