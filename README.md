@@ -39,11 +39,11 @@ This application was built to create your own logo without having to pay a graph
 https://drive.google.com/file/d/1nK15l7qGs8cI864TJTF2oB6gCKlot0ZP/view
 
 ## Screenshots
-![svg-logo-test](../image1.png)
-![svg-logo](/image.png)
-![example1](./svg-logo-maker/examples/example1.png)
-![example2](./svg-logo-maker/examples/example2.png)
-![example3](./svg-logo-maker/examples/example3.png)
+![svg-logo-test](../image-1.png)
+![svg-logo](../image.png)
+![example1](../svg-logo-maker/examples/example1.png)
+![example2](../svg-logo-maker/examples/example2.png)
+![example3](../svg-logo-maker/examples/example3.png)
 
 ## Technologies
 This application utilizes node.js v16, inquirer v8.2.4, file system module, and jest v29.5.0.
